@@ -15,7 +15,9 @@ console.log("  The cred key = " + trello_creds.key );
 console.log("The cred token = " + trello_creds.token );
 console.log(" | ~~~~                                                                   ~~~ | ");
 
-var prxyTrello = new Npm.require('node-trello') (
+var apiTrello = Npm.require('node-trello');
+
+var prxyTrello = new apiTrello (
       trello_creds.key
     , trello_creds.token
   );

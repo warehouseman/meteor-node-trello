@@ -1,6 +1,6 @@
 Package.describe({
   name: 'warehouseman:meteor-node-trello',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'Enables a Meteor server to act as a client to the Trello REST API.  A simple wrapper for [node-trello](https://github.com/adunkman/node-trello) ',
   git: 'https://github.com/warehouseman/meteor-node-trello',
   documentation: 'README.md'
@@ -9,22 +9,22 @@ Package.describe({
 Package.onUse(function(api) {
   api.use('meteor-platform');
 
-  api.use('meteorhacks:async', 'server');
+  api.use('meteorhacks:async', ['server']);
   api.versionsFrom('1.1.0.2');
 
   api.addFiles(['lib/trello-creds.js'], ['server', 'client']);
 
-  api.export('proxyTrello', 'server');
-  api.addFiles(['server/meteor-node-trello.js'], 'server');
+  api.export('proxyTrello', ['server']);
+  api.addFiles(['server/meteor-node-trello.js'], ['server']);
 
-  api.use('jquery', 'client');
+  api.use('jquery', ['server']);
   api.export('wrapper', 'server');
-  api.addFiles('client/trello_client.js');
+  api.addFiles('client/trello_client.js', ['client']);
 });
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('meteorhacks:async', 'server');
+  api.use('meteorhacks:async', ['server']);
   api.use('warehouseman:meteor-node-trello');
   api.addFiles('tests/meteor-node-trello-tests.js');
 });
