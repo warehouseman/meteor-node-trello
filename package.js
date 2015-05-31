@@ -7,12 +7,29 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
+  api.use('meteor-platform');
+
+  api.use('meteorhacks:async', 'server');
   api.versionsFrom('1.1.0.2');
-  api.addFiles('client/meteor-node-trello.js');
+
+  api.addFiles(['lib/trello-creds.js'], ['server', 'client']);
+
+  api.export('proxyTrello', 'server');
+  api.addFiles(['server/meteor-node-trello.js'], 'server');
+
+  api.use('jquery', 'client');
+  api.export('wrapper', 'server');
+  api.addFiles('client/trello_client.js');
 });
 
 Package.onTest(function(api) {
   api.use('tinytest');
+  api.use('meteorhacks:async', 'server');
   api.use('warehouseman:meteor-node-trello');
   api.addFiles('tests/meteor-node-trello-tests.js');
 });
+
+Npm.depends({
+  'node-trello': '1.1.2'
+});
+
