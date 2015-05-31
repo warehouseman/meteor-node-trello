@@ -22,9 +22,7 @@ var prxyTrello = new apiTrello (
     , trello_creds.token
   );
 
-proxyTrello = Async.wrap(prxyTrello, ['get', 'put']);
-
-//var data = proxyTrello.get("/1/members/me");
+proxyTrello = Async.wrap(prxyTrello, ['get', 'put', 'post']);
 
 Meteor.methods({
   trelloProxy_get : function (restPath) {

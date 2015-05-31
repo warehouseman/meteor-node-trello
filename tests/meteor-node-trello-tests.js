@@ -33,6 +33,15 @@ if (Meteor.isServer) {
     test.equal(data.username, process.env.TRELLO_USER_A);
   });
  
+  Tinytest.add('trello:find_board_Aa', function (test) {
+    var nameSought = "Aa";
+    var nameBoard = "not found";
+    var boards = proxyTrello.get("/1/members/me/boards");
+    for (board in boards) {
+      if (boards[board].name === nameSought) nameBoard = boards[board].name;
+    }
 
+    test.equal(nameBoard, nameSought);
 
+  });
 }
